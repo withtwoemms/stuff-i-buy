@@ -17,6 +17,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find_by(id: params[:id])
+    @items = @list.items
   end
 
   def update
