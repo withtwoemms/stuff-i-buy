@@ -24,9 +24,15 @@ class ItemsController < ApplicationController
   end
 
   def update
+    list = List.find_by(id: params[:id])
+    Item.find_by(id: params[:id]).update_attributes(item_params)
+    redirect_to list_path(list)
   end
 
   def destroy
+    list = List.find_by(id: params[:id])
+    Item.find_by(id: params[:id]).destroy
+    redirect_to list_path(list)
   end
 
   private
