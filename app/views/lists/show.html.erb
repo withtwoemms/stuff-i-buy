@@ -1,9 +1,30 @@
 <h1><%= @list.name.capitalize %></h1>
-<ul>
-  <% @items.each do |item|  %>
-    <li><%= item.name %></li>
+</br>
+
+<table class="table">
+  <thead>
+    <th>Item</th>
+    <th>Date Purchased</th>
+  </thead>
+  <tbody>
+  <% @list.items.each do |item|  %>
+    <tr>
+      <td> 
+        <%= item.name %>
+      </td>
+      <td><%= localize(item.updated_at, format: :long) %></td>
+      <td>
+        <td class="col-md-1"><%= form_tag edit_list_item_path(@list, item), method: :get, class: "form-inline" do %>
+          <%= submit_tag "RENAME", class: "btn btn-default btn-sm" %>
+        <% end %></td>
+        <td class="col-md-1"><%= form_tag list_item_path(@list, item), method: :delete do %>
+          <%= submit_tag "DELETE", class: "btn btn-default btn-sm" %>
+        <% end %></td>
+      </td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
 
 <hr>
 
