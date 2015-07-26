@@ -11,7 +11,7 @@
       <tr>
         <td> 
           <%= item.name %>
-            <%= form_tag list_item_path(@list, item), method: :patch do %>
+          <%= form_tag edit_list_item_path(@list, item), method: :get do %>
               <%= submit_tag "RENAME" %>
             <% end %>
             <%= form_tag list_item_path(@list, item), method: :delete do %>
