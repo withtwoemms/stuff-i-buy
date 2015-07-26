@@ -9,6 +9,7 @@
 <table class="table">
   <thead>
     <th>Item</th>
+    <th>Store</th>
     <th>Date Purchased</th>
   </thead>
   <tbody>
@@ -16,6 +17,9 @@
     <tr>
       <td> 
         <%= item.name %>
+      </td>
+      <td>
+        <%= item.store %>
       </td>
       <td><%= localize(item.updated_at, format: :long) %></td>
       <td>
