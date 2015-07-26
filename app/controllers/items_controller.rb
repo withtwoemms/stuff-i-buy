@@ -11,6 +11,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @list = List.find_by(id: params[:list_id])
+    @item = Item.find_by(id: params[:id])
+    render :edit
   end
 
   def create
@@ -25,8 +28,12 @@ class ItemsController < ApplicationController
 
   def update
     list = List.find_by(id: params[:list_id])
-    Item.find_by(id: params[:id]).update_attributes(item_params)
-    redirect_to list_path(list)
+    item = Item.find_by(id: params[:id])
+    if item.update_attributes(item_params)#name: params[:item][:name])
+      redirect_to list_path(list)
+    else
+      render :edit
+    end
   end
 
   def destroy
