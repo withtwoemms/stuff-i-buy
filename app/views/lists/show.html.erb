@@ -1,5 +1,10 @@
 <h1><%= @list.name.capitalize %></h1>
+<ul>
+  <% @items.each do |item|  %>
+    <li><%= item.name %></li>
+  <% end %>
+</ul>
 
 <hr>
 
-<p></p>
+<%= link_to "Add New Item", new_list_item_path(@list) %>
