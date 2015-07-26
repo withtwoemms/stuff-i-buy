@@ -13,7 +13,17 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(item_params)
+    @list = List.find_by(id: params[:list_id])
+    item = Item.create(item_params)
+    if item.valid?
+      p ">" * 50
+      p lists_path(@list)
+      p params[:list_id]
+      p ">" * 50
+      redirect_to "/lists/#{params[:list_id]}" #list_path 
+    else
+      render :new
+    end
   end
 
   def update
