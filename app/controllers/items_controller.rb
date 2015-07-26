@@ -6,14 +6,21 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @list = List.find_by(id: params[:list_id])
+    @item = @list.items.build
   end
 
   def edit
   end
 
   def create
-    Item.create(item_params)
+    @list = List.find_by(id: params[:list_id])
+    item = @list.items.create(item_params)
+    if item.valid?
+      redirect_to list_path(@list)
+    else
+      render :new
+    end
   end
 
   def update
