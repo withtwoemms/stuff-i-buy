@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   def new
     @list = List.find_by(id: params[:list_id])
     @item = @list.items.build
+    @store = Store.new
   end
 
   def edit
@@ -17,10 +18,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @list = List.find_by(id: params[:list_id])
-    item = @list.items.create(item_params)
+    list = List.find_by(id: params[:list_id])
+    store = Store.find_or_create_by(store_params)
+    item = list.items.create(name: params[:item][:name], store_id: store.id)
     if item.valid?
-      redirect_to list_path(@list)
+      redirect_to list_path(list)
     else
       render :new
     end
@@ -43,6 +45,10 @@ class ItemsController < ApplicationController
   end
 
   private
+    def store_params
+      params.require(:store).permit(:name)
+    end
+
     def item_params
       params.require(:item).permit(:name)
     end
