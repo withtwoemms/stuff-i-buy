@@ -4,6 +4,22 @@
     <li><%= item.name %></li>
   <% end %>
 </ul>
+</br>
+
+<table class="table">
+  <thead>
+    <th>Item</th>
+    <th>Date Purchased</th>
+  </thead>
+  <tbody>
+  <% @list.items.each do |item|  %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= localize(item.updated_at, format: :long) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
 
 <hr>
 
