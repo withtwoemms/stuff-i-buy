@@ -3,6 +3,7 @@
 
 <table class="table">
   <thead>
+    <th>Qty.</th>
     <th>Item</th>
     <th>Store</th>
     <th>Date Purchased</th>
@@ -10,6 +11,9 @@
   <tbody>
   <% @list.items.each do |item|  %>
     <tr>
+      <td>
+        <%= item.quantity %>
+      </td>
       <td> 
         <%= item.name %>
       </td>
