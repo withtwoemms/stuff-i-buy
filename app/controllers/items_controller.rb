@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   def create
     list = List.find_by(id: params[:list_id])
     store = Store.find_or_create_by(store_params)
-    item = list.items.create(name: params[:item][:name], store_id: store.id)
+    item = list.items.create(name: params[:item][:name], quantity: params[:item][:quantity], store_id: store.id)
     if item.valid?
       redirect_to list_path(list)
     else
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
     list = List.find_by(id: params[:list_id])
     item = Item.find_by(id: params[:id])
     store = Store.find_by(store_params)
-    if item.update_attributes(name: params[:item][:name], store_id: store.id)#name: params[:item][:name])
+    if item.update_attributes(name: params[:item][:name], quantity: params[:item][:quantity], store_id: store.id)
       redirect_to list_path(list)
     else
       render :edit
