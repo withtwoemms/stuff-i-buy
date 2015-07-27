@@ -20,7 +20,7 @@
       <td>
         <%= item.store.name %>
       </td>
-      <td><%= localize(item.updated_at, format: :long) %></td>
+      <td><%= item.created_at.localtime.strftime("%I:%M %p on %m/%d/%y") %></td>
       <td>
         <td class="col-md-1"><%= form_tag edit_list_item_path(@list, item), method: :get, class: "form-inline" do %>
           <%= submit_tag "EDIT", class: "btn btn-default btn-sm" %>
