@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   def update
     list = List.find_by(id: params[:list_id])
     item = Item.find_by(id: params[:id])
-    store = Store.find_by(store_params)
+    store = Store.find_or_create_by(store_params)
     if item.update_attributes(name: params[:item][:name], store_id: store.id)#name: params[:item][:name])
       redirect_to list_path(list)
     else
