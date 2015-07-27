@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
   def edit
     @list = List.find_by(id: params[:list_id])
     @item = Item.find_by(id: params[:id])
+    @store = @item.store
     render :edit
   end
 
@@ -31,7 +32,8 @@ class ItemsController < ApplicationController
   def update
     list = List.find_by(id: params[:list_id])
     item = Item.find_by(id: params[:id])
-    if item.update_attributes(item_params)#name: params[:item][:name])
+    store = Store.find_by(store_params)
+    if item.update_attributes(name: params[:item][:name], store_id: store.id)#name: params[:item][:name])
       redirect_to list_path(list)
     else
       render :edit
