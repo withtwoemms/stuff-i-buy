@@ -19,14 +19,27 @@ class ItemsController < ApplicationController
   end
 
   def create
+<<<<<<< Updated upstream
     list = List.find_by(id: params[:list_id])
     store = Store.find_or_create_by(store_params)
     item = list.items.create(name: params[:item][:name], store_id: store.id)
+=======
+<<<<<<< Updated upstream
+    Item.create(item_params)
+=======
+    list = List.find_by(id: params[:list_id])
+    store = Store.find_or_create_by(store_params)
+    item = list.items.create(name: params[:item][:name], quantity: params[:item][:quantity], store_id: store.id)
+>>>>>>> Stashed changes
     if item.valid?
       redirect_to list_path(list)
     else
       render :new
     end
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   end
 
   def update
